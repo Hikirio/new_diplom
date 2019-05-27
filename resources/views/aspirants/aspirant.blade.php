@@ -2,7 +2,7 @@
 @section('content')
     <div style="text-align: center">
 
-        <h3 style="font-size: 36px"> Начать поиск вакансий</h3>
+        <h3 style="font-size: 36px">Начать поиск вакансий</h3>
         <p style="font-size: 24px">Заполните свой профиль</p>
     </div>
     <div class="container">
@@ -76,18 +76,14 @@
                         <div class="col-md-6">
 
                             <select name="experience" id="experience" class="form-control">
-                                <option value="1">Нет опыта</option>
-                                <option value="2">Менее года</option>
-                                <option value="3">1 год</option>
-                                <option value="4">1,5 года</option>
-                                <option value="5">2 года</option>
-                                <option value="6">2,5 года</option>
-                                <option value="7">3 года</option>
-                                <option value="8">4 года</option>
-                                <option value="9">5 лет</option>
-                                <option value="10">6 лет</option>
-                                <option value="11">7 лет</option>
-                                <option value="12">Более 10 лет</option>
+
+                                @foreach($experience as $exp)
+
+                                    <option value="{{$exp->id}}"> {{$exp->num.' '.$exp->year}}</option>
+
+                                @endforeach
+
+
                             </select>
                         </div>
 
@@ -106,17 +102,57 @@
 
                                 @endforeach
 
-                            <option value="11"> Более 5 лет</option>
                             </select>
 
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="category"
+                               class="col-md-4 col-form-label text-md-right"><b>{{ __('Уровень английского:') }}</b></label>
 
+                        <div class="col-md-6">
+
+                            <select name="category" id="category" class="form-control">
+
+                                @foreach($eng as $i)
+
+                                    <option value="{{$i->id}}"> {{$i->english_level}}</option>
+
+                                @endforeach
+
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="option"
+                               class="col-md-4 col-form-label text-md-right"><b>{{ __('Тип занятости:') }}</b></label>
+
+                        <div class="col-md-6">
+
+                            @foreach($t_empl as $i)
+
+
+                                <input name="option" type="checkbox" id="option" value="{{$i->id}}">{{$i->type_employment}}<Br>
+
+
+                            @endforeach
+
+
+                        </div>
+                    </div>
+                    <div class="form-group row mb-0">
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Сохранить') }}
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="col" style="background: black">
 
             </div>
         </div>
-
-@stop
+    </div>
+@endsection
