@@ -11,6 +11,7 @@
 |
 */
 
+use App\Language;
 use App\Vacancy;
 use Illuminate\Support\Facades\Route;
 
@@ -22,13 +23,15 @@ Route::get('/test', function () {
     $user = \App\Employer::all();
     return view('welcome', compact('user'));
 });
-/*=======================Поиск работы==================================*/
 
-//Еще не реализован, для поиска работы
+/*=======================Авторизация==================================*/
+
+/*=======================Поиск работы==================================*/
 Route::group(['prefix' => 'aspirant', 'namespace' => 'Aspirant',
     'middleware' => ['auth']], function () {
     Route::get('/', function () {//newdiplom/aspirant
-        return view('aspirant/aspirant');
+        $ids = Language::findId();
+        return view('aspirants.aspirant',compact('ids'));
     });
 }
 );
@@ -46,11 +49,9 @@ Route::group(['prefix' => 'employer', 'namespace' => 'Employer',
 
 /*==============================Оферы==================================*/
 //Route::get('/offers', 'Offers\OfferController@offer');
-Route::group(['prefix' => 'offers', 'namespace' => 'Оffers',
-    'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'offers', 'namespace' => 'Оffers',], function () {
     Route::get('/', function () {//newdiplom/aspirant
-        $r = Vacancy::all();
-        return view('offer/offer',compact('r'));
+        return view('jobs.offers');//, compact('r'));
     });
 }
 );

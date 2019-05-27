@@ -60,6 +60,19 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>--}}
+
+{{--                            <div class="col-md-8">--}}
+{{--                                <select class="col-md-4 col-form-label text-md-right" id="selectUser" name="user_selected" required focus>--}}
+{{--                                    <option value="" disabled selected>Кто вы?</option>--}}
+{{--                                    @foreach($users as $user)--}}
+{{--                                        <option value="{{$user->id}}">{{ $user->name }}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
