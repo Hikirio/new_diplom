@@ -17,7 +17,7 @@
                             <input id="want_position" type="text"
                                    class="form-control @error('want_position') is-invalid @enderror"
                                    name="want_position" value="{{ old('want_position') }}" required
-                                   autocomplete="want_position" autofocus>
+                                   autocomplete="want_position" autofocus placeholder="Например: Junior JS Developer">
 
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                             <input id="cost" type="text"
                                    class="form-control @error('cost') is-invalid @enderror"
                                    name="cost" value="{{ old('want_position') }}" required
-                                   autocomplete="cost" autofocus>
+                                   autocomplete="cost" autofocus placeholder="400$">
 
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                             <input id="city" type="text"
                                    class="form-control @error('city') is-invalid @enderror"
                                    name="city" value="{{ old('city') }}" required
-                                   autocomplete="city" autofocus>
+                                   autocomplete="city" autofocus placeholder="Харьков">
 
                         </div>
                     </div>
@@ -53,18 +53,18 @@
                             <input id="skills" type="text"
                                    class="form-control @error('skills') is-invalid @enderror"
                                    name="skills" value="{{ old('skills') }}" required
-                                   autocomplete="skills" autofocus>
+                                   autocomplete="skills" autofocus placeholder="PHP">
 
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="skills"
+                        <label for="experienceofjob"
                                class="col-md-4 col-form-label text-md-right"><b>{{ __('Опыт работы:') }}</b></label>
 
                         <div class="col-md-6">
-                            <textarea name="skills" id="skills" cols="30" rows="10"
-                                      class="form-control @error('skills') is-invalid @enderror" required
-                                      autocomplete="skills" autofocus></textarea>
+                            <textarea name="experienceofjob" id="skills" cols="32" rows="10"
+                                      class="form-control @error('experienceofjob') is-invalid @enderror" required
+                                      autocomplete="experienceofjob" autofocus placeholder="Расскажите о своих проектах,технологиях которые знаете , ваша роль в команде и тд"></textarea>
 
 
                         </div>
@@ -107,12 +107,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="category"
+                        <label for="english_lvl"
                                class="col-md-4 col-form-label text-md-right"><b>{{ __('Уровень английского:') }}</b></label>
 
                         <div class="col-md-6">
 
-                            <select name="category" id="category" class="form-control">
+                            <select name="english_lvl" id="english_lvl" class="form-control">
 
                                 @foreach($eng as $i)
 
@@ -133,7 +133,8 @@
                             @foreach($t_empl as $i)
 
 
-                                <input name="option" type="checkbox" id="option" value="{{$i->id}}">{{$i->type_employment}}<Br>
+                                <input name="option" type="checkbox" id="option"
+                                       value="{{$i->id}}">{{$i->type_employment}}<Br>
 
 
                             @endforeach
