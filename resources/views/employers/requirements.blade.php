@@ -9,11 +9,10 @@
 
                 <div class="col-md-6">
 
-                    @foreach($show as $exp)
+@foreach($show as $s)
 
-                        {{$exp->id}}
-
-                    @endforeach
+                        {{$s}}
+    @endforeach
                 </div>
 
             </div>

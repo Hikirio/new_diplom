@@ -11,18 +11,21 @@
 |
 */
 
+use App\Employer;
+use App\Englishlevel;
+use App\Experience;
 use App\Language;
-use App\Vacancy;
+use App\Typeemployement;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test', function () {
-    $user = \App\Employer::all();
-    return view('welcome', compact('user'));
-});
+//Route::get('/test', function () {
+//    $user = \App\Employer::all();
+//    return view('welcome', compact('user'));
+//});
 
 /*=======================Авторизация==================================*/
 
@@ -30,22 +33,32 @@ Route::get('/test', function () {
 Route::group(['prefix' => 'aspirant', 'namespace' => 'Aspirant',
     'middleware' => ['auth']], function () {
     Route::get('/', function () {//newdiplom/aspirant
-        $ids = Language::findId();
-        return view('aspirants.aspirant',compact('ids'));
+        $ids = Language::idName();
+        $experience = Experience::idName();
+        $eng = Englishlevel::idName();
+        $t_empl = Typeemployement::idName();
+        return view('aspirants.aspirant', compact('ids', 'experience', 'eng', 't_empl'));
     });
-}
-);
+
+});
 /*=====================================================================*/
 
 /*=======================Поиск сторудника==============================*/
 //Еще не реализован, для работодателя
-Route::group(['prefix' => 'employer', 'namespace' => 'Employer',
-    'middleware' => ['auth']], function () {
-    Route::get('/', function () {//newdiplom/aspirant
-        return view('employer/employer');
-    });
-}
-);
+
+//Route::group(['prefix' => 'employer', 'namespace' => '',
+////    'middleware' => ['auth']], function () {
+////    //Route::resource('','EmployerController');
+////    Route::resource('','EmployerController@');
+////
+////}
+////);
+
+Route::resource('employer', 'EmployerController');
+Route::get('employer/{employer}', 'EmployerController@show');
+
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 /*==============================Оферы==================================*/
 //Route::get('/offers', 'Offers\OfferController@offer');
@@ -73,4 +86,3 @@ Route::post('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\P
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
